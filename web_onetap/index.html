@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Google Auth Example</title>
+  </head>
+  <body>
+    <h1>Google Auth Example</h1>
+    <div
+      id="g_id_onload"
+      data-client_id="513169695084-kpua0pgjju4m46aaarkeq9u6hiikr46r.apps.googleusercontent.com"
+      data-callback="handleCredentialsResponse"
+    ></div>
+  </body>
+  <!-- Load MongoDB Realm -->
+  <script src="https://unpkg.com/realm-web/dist/bundle.iife.js"></script>
+  <!-- Load Google One Tap -->
+  <script src="https://accounts.google.com/gsi/client"></script>
+  <!-- Log in with Realm and Google Authentication -->
+  <script async defer>
+    const app = new Realm.App({
+      id: "myapp-zufnj",
+    });
+
+    async function handleCredentialsResponse(response) {
+      console.log(response);
+      const credentials = Realm.Credentials.google(response.credential);
+      const user = await app.logIn(credentials);
+      alert(`Logged in with id: ${user.id}`);
+    }
+  </script>
+</html>

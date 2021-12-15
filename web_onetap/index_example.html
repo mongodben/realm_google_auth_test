@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Google One Tap Example</title>
+  </head>
+  <body>
+    <h1>Google One Tap Example</h1>
+    <!-- The data-callback HTML attribute sets the callback function that is run 
+      when the user logs in. Here we're calling the handleCredentialsResponse JavaScript 
+      function defined in the below script section to log the user into Realm.       
+    -->
+    <div
+      id="g_id_onload"
+      data-client_id="<your_google_client_id>"
+      data-callback="handleCredentialsResponse"
+    ></div>
+  </body>
+  <!-- Load MongoDB Realm -->
+  <script src="https://unpkg.com/realm-web/dist/bundle.iife.js"></script>
+  <!-- Load Google One Tap -->
+  <script src="https://accounts.google.com/gsi/client"></script>
+  <!-- Log in with Realm and Google Authentication -->
+  <script async defer>
+    const app = new Realm.App({
+      id: "<your_realm_app_id>",
+    });
+    // Callback used in `data-callback` to handle response and log user into Realm
+    function handleCredentialsResponse(response) {
+      const credentials = Realm.Credentials.google(response.credential);
+      app
+        .logIn(credentials)
+        .then((user) => alert(`Logged in with id: ${user.id}`));
+    }
+  </script>
+</html>
