@@ -7,10 +7,9 @@ const path = require("path");
 const { Buffer } = require("buffer");
 
 const PORT = 5500;
-const REALM_APP_ID = "myapp-zufnj";
-const GOOGLE_CLIENT_ID =
-  "513169695084-kpua0pgjju4m46aaarkeq9u6hiikr46r.apps.googleusercontent.com";
-const GOOGLE_CLIENT_SECRET = "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";
+const REALM_APP_ID = process.env.REALM_APP_ID;
+const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
+const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
 const BASE_URL = `http://localhost:${PORT}`;
 
 const app = express();
