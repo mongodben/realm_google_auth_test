@@ -4,7 +4,7 @@ const passport = require("passport");
 const session = require("express-session");
 var GoogleStrategy = require("passport-google-oauth2").Strategy;
 const path = require("path");
-const { Buffer } = require("buffer");
+require("dotenv").config();
 
 const PORT = 5500;
 const REALM_APP_ID = process.env.REALM_APP_ID;
