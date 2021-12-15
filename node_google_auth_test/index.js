@@ -31,8 +31,11 @@ app.use(
 app.use(passport.initialize()); // init passport on every route call
 app.use(passport.session()); //allow passport to use "express-session"
 
-function authUser(request, accessToken, refreshToken, profile, done) {
-  const credentials = Realm.Credentials.google({ authCode: accessToken });
+function authUser(accessToken, refreshToken, profile, done) {
+  console.log(accessToken);
+  console.log(refreshToken);
+  console.log(profile);
+  const credentials = Realm.Credentials.google(accessToken);
   return realmApp.logIn(credentials).then((user) => {
     console.log(`Logged in with id: ${user.id}`);
     return done(null, profile);
