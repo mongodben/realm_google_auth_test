@@ -5,22 +5,18 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start:pp": "nodemon passport.js",
-    "start:gapi": "nodemon gapi.js"
+    "start:dev": "nodemon index.js",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "cookie-parser": "^1.4.6",
     "dotenv": "^10.0.0",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "googleapis": "^92.0.0",
-    "lodash": "^4.17.21",
     "method-override": "^3.0.0",
-    "passport": "^0.5.0",
-    "passport-google-oauth": "^2.0.0",
     "realm": "^10.10.1"
   },
   "devDependencies": {
