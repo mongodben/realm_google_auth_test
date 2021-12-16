@@ -37,7 +37,7 @@ const oauth2Client = new OAuth2(
   oauthConfig.redirect_uris[0]
 );
 
-// instantiate Realm app
+// Instantiate Realm app
 const realmApp = new Realm.App({
   id: REALM_APP_ID,
 });
@@ -60,19 +60,19 @@ app.get("/auth/google/callback", function (req, res, next) {
     // The user did not give us permission.
     return next(req.query.error);
   } else {
-    // get Google token and use it to sign into Realm
-    oauth2Client.getToken(req.query.code, async function (err, token) {
+    // Get Google token and use it to sign into Realm
+    oauth2Client.getToken(req.query.code, async function (error, token) {
       if (error) return next(error);
       try {
-        const creds = Realm.Credentials.google({ idToken: token.id_token });
-        const user = await realmApp.logIn(creds);
+        const credential = Realm.Credentials.google({
+          idToken: token.id_token,
+        });
+        const user = await realmApp.logIn(credential);
         console.log("signed in as Realm user", user.id);
+        return res.render("views/success", { id: user.id });
       } catch (error) {
         next(error);
       }
-
-      // Store the credentials given by google into a jsonwebtoken in a cookie called 'jwt'
-      return res.render("views/success");
     });
   }
 });
